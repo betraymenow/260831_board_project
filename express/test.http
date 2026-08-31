@@ -1,0 +1,61 @@
+@baseUrl = http://localhost:4000
+@token = 여기에_로그인_후_받은_토큰_붙여넣기
+
+### 1. 회원가입
+POST {{baseUrl}}/member/join
+Content-Type: application/json
+
+{"id": "testuser", "pw": "pass1234", "name": "테스트", "phone": "010-1234-5678"}
+
+### 2. 로그인 (토큰 발급)
+POST {{baseUrl}}/member/login
+Content-Type: application/json
+
+{"id": "testuser", "pw": "pass1234"}
+
+### 3. 로그인 확인
+GET {{baseUrl}}/member/check
+Authorization: {{token}}
+
+### 4. 회원 목록
+GET {{baseUrl}}/member/list
+
+### 5. 회원 상세
+GET {{baseUrl}}/member/get/testuser
+
+### 6. 회원정보 수정
+PUT {{baseUrl}}/member/update/testuser
+Authorization: {{token}}
+Content-Type: application/json
+
+{"phone": "010-9999-9999"}
+
+### 7. 회원 삭제
+DELETE {{baseUrl}}/member/delete/testuser
+Authorization: {{token}}
+
+### ------------------ 게시글 ------------------
+
+### 8. 게시글 작성
+POST {{baseUrl}}/board/write
+Authorization: {{token}}
+Content-Type: application/json
+
+{"title": "첫 게시글", "content": "게시판 테스트 내용 입니다."}
+
+### 9. 게시글 목록
+GET {{baseUrl}}/board/list?page=1&limit=10
+
+### 10. 게시글 상세
+GET {{baseUrl}}/board/get/여기에_게시글ID
+
+### 11. 게시글 수정
+PUT {{baseUrl}}/board/update/여기에_게시글ID
+Authorization: {{token}}
+Content-Type: application/json
+
+{"title": "수정된 제목"}
+
+### 12. 게시글 삭제
+DELETE {{baseUrl}}/board/delete/여기에_게시글ID
+Authorization: {{token}}
